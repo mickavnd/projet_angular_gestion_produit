@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProduitsComponent implements OnInit {
 
-  constructor() { }
+  produits : string[];
+
+  constructor() {
+
+    this.produits =["Pc asus","Imprimante espon", "tablette samsung"];
+    
+   }
 
   ngOnInit(): void {
   }
