@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Produit } from '../Model/produit.model';
+ import { Produit } from '../Model/produit.Model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,19 @@ export class ProduitService {
     this.produits.push(produit);
 
   }
+  supprimerProduit( prod: Produit){
+    //supprimer le produit prod du tableau produits
+    const index = this.produits.indexOf(prod, 0);
+    if (index > -1) {
+    this.produits.splice(index, 1);
+    }
+    //ou Bien
+    /* this.produits.forEach((cur, index) => {
+    if(prod.idProduit === cur.idProduit) {
+    this.produits.splice(index, 1);
+    }
+    }); */
+    }
 
 
 
