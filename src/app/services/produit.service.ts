@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Categorie } from '../Model/categorie.Model';
  import { Produit } from '../Model/produit.Model';
 
 @Injectable({
@@ -7,17 +8,29 @@ import { Injectable } from '@angular/core';
 export class ProduitService {
   
   produits : Produit[]; // un tableau de  produit
+  categories : Categorie[];
+  
+  produit = new Produit() ;
+  categorie  = new Categorie();
+  
 
-  produit : Produit ;
+  
 
   constructor() { 
 
+    this.categories =[
+      {idCat :1 , nomCat : "Pc"},
+      {idCat :2 ,nomCat : "imprimante"}
+    ];
+
+
+
     this.produits =[
-      {idProduit:1, nomProduit:"pc Asus",prixProduit: 3000.600, dateCreation : new Date("01/14/2011")},
+      {idProduit:1, nomProduit:"pc Asus",prixProduit: 3000.600, dateCreation : new Date("01/14/2011"), categorie :{idCat :1, nomCat :"Pc"}},
 
-      {idProduit:2, nomProduit:"imprimante",prixProduit: 450,dateCreation : new Date("12/17/2020")}, 
+      {idProduit:2, nomProduit:"imprimante",prixProduit: 450,dateCreation : new Date("12/17/2020"), categorie :{idCat :2 ,nomCat :"imprimante"}}, 
 
-      {idProduit:3, nomProduit:"tablette Samsung",prixProduit: 900.123, dateCreation : new Date("02/20/2022")},
+      {idProduit:3, nomProduit:"tablette Samsung",prixProduit: 900.123, dateCreation : new Date("02/20/2022"), categorie :{idCat :1, nomCat :"Pc"}},
     ];
     
 
@@ -74,6 +87,21 @@ export class ProduitService {
         this.addProduit(p);
         this.trierProduit();
       }
+
+      listeCategorie(): Categorie[]{
+
+        return this.categories
+
+      }
+
+      consulterCategorie( id : number): Categorie{
+
+        this.categorie = this.categories.find(cat => cat.idCat == id); 
+        
+        return this.categorie
+      }
+
+
 
 
 
