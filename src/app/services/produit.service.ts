@@ -9,6 +9,7 @@ export class ProduitService {
   
   produits : Produit[]; // un tableau de  produit
   categories : Categorie[];
+  produitRechercher : Produit[];
   
   produit = new Produit() ;
   categorie  = new Categorie();
@@ -99,6 +100,19 @@ export class ProduitService {
         this.categorie = this.categories.find(cat => cat.idCat == id); 
         
         return this.categorie
+      }
+
+      rechercheParCategorie(idCat:number): Produit[]{
+
+        this.produitRechercher =[];
+        this.produits.forEach((cur,index)=>{
+          if(idCat == cur.categorie.idCat){
+            console.log("cur"+cur);  
+            this.produitRechercher.push(cur)
+          }});
+          return this.produitRechercher;
+
+
       }
 
 
