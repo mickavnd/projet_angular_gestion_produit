@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Categorie } from '../Model/categorie.Model';
- import { Produit } from '../Model/produit.Model';
+import { Produit } from '../Model/produit.Model';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+const httpOption ={
+  headers : new HttpHeaders({'Content-Type':'application/json'})
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProduitService {
+
+  apiUrl :string ='http://localhost:8080/produits/api'
   
   produits : Produit[]; // un tableau de  produit
   categories : Categorie[];
@@ -17,22 +25,22 @@ export class ProduitService {
 
   
 
-  constructor() { 
+  constructor(private http : HttpClient) { 
 
-    this.categories =[
-      {idCat :1 , nomCat : "Pc"},
-      {idCat :2 ,nomCat : "imprimante"}
-    ];
+    // this.categories =[
+    //   {idCat :1 , nomCat : "Pc"},
+    //   {idCat :2 ,nomCat : "imprimante"}
+    // ];
 
 
 
-    this.produits =[
-      {idProduit:1, nomProduit:"pc Asus",prixProduit: 3000.600, dateCreation : new Date("01/14/2011"), categorie :{idCat :1, nomCat :"Pc"}},
+    // this.produits =[
+    //   {idProduit:1, nomProduit:"pc Asus",prixProduit: 3000.600, dateCreation : new Date("01/14/2011"), categorie :{idCat :1, nomCat :"Pc"}},
 
-      {idProduit:2, nomProduit:"imprimante",prixProduit: 450,dateCreation : new Date("12/17/2020"), categorie :{idCat :2 ,nomCat :"imprimante"}}, 
+    //   {idProduit:2, nomProduit:"imprimante",prixProduit: 450,dateCreation : new Date("12/17/2020"), categorie :{idCat :2 ,nomCat :"imprimante"}}, 
 
-      {idProduit:3, nomProduit:"tablette Samsung",prixProduit: 900.123, dateCreation : new Date("02/20/2022"), categorie :{idCat :1, nomCat :"Pc"}},
-    ];
+    //   {idProduit:3, nomProduit:"tablette Samsung",prixProduit: 900.123, dateCreation : new Date("02/20/2022"), categorie :{idCat :1, nomCat :"Pc"}},
+    // ];
     
 
   }
@@ -61,7 +69,7 @@ export class ProduitService {
     }); */
     }
 
-    consulterProduit(id:number): Produit {
+    consulterProduit(id:number): Produit  {
       this.produit = this.produits.find(p => p.idProduit == id);
       return this.produit;
       }
