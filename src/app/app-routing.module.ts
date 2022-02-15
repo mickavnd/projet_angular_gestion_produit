@@ -6,6 +6,7 @@ import {ProduitsComponent} from './produits/produits.component';
 import { AddProduitComponent } from './add-produit/add-produit.component';
 import { UpdateProduitComponent } from './update-produit/update-produit.component';
 import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -14,6 +15,7 @@ import { RechercheParCategorieComponent } from './recherche-par-categorie/recher
    {path : "add-produit", component :AddProduitComponent},
    {path: "updateProduit/:id", component: UpdateProduitComponent},
    {path :"rechercheParCategorie", component: RechercheParCategorieComponent},
+   {path : "Login", component : LoginComponent },
    {path : "", redirectTo :"produits", pathMatch:"full"}
 
  ];

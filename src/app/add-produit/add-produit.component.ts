@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Categorie } from '../Model/categorie.Model';
 import { Produit } from '../Model/produit.Model';
 import { ProduitService } from '../services/produit.service';
@@ -15,15 +16,17 @@ export class AddProduitComponent implements OnInit {
   categorie : Categorie[];
   newIdCat :number;
   newCategorie : Categorie;
+  
 
-  constructor( private produitService : ProduitService) { }
+  constructor( private produitService : ProduitService, private route:Router) { }
 
 
  addProduit(){   
-   this.newCategorie = this.produitService.consulterCategorie(this.newIdCat);
-    this.newProduit.categorie =this.newCategorie;
-    this.produitService.addProduit(this.newProduit);
-    this.msg ="Produit "+ this.newProduit.nomProduit+" ajouté avec succès"
+ this.produitService.addProduit(this.newProduit).subscribe(prod => {
+   console.log(prod);
+   
+ });
+ this.route.navigate(['produit'])
   }
   ngOnInit(): void {
     this.categorie = this.produitService.listeCategorie();

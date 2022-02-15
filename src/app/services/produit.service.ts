@@ -14,8 +14,7 @@ const httpOption ={
 export class ProduitService {
 
   apiUrl :string ='http://localhost:8080/produits/api'
-  
-  produits : Produit[]; // un tableau de  produit
+   produits : Produit[]; // un tableau de  produit
   categories : Categorie[];
   produitRechercher : Produit[];
   
@@ -45,56 +44,33 @@ export class ProduitService {
 
   }
 
-  listeProduit (): Produit[]{
+  listeProduit (): Observable<Produit[]>{
 
-    return this.produits;
+    return this.http.get<Produit[]>(this.apiUrl);
   }
 
-  addProduit(produit: Produit){
+  addProduit(produit: Produit):Observable<Produit>{
 
-    this.produits.push(produit);
+  return this.http.post<Produit>(this.apiUrl,produit,httpOption)
 
   }
-  supprimerProduit( prod: Produit){
-    //supprimer le produit prod du tableau produits
-    const index = this.produits.indexOf(prod, 0);
-    if (index > -1) {
-    this.produits.splice(index, 1);
-    }
-    //ou Bien
-    /* this.produits.forEach((cur, index) => {
-    if(prod.idProduit === cur.idProduit) {
-    this.produits.splice(index, 1);
-    }
-    }); */
+  supprimerProduit( id :number){
+   const url =`${this.apiUrl}/${id}`;
+   return this.http.delete(url,httpOption);
     }
 
-    consulterProduit(id:number): Produit  {
-      this.produit = this.produits.find(p => p.idProduit == id);
-      return this.produit;
+    consulterProduit(id:number): Observable<Produit> {
+     const url = `${this.apiUrl}/${id}`;
+     return this.http.get<Produit>(url);
       }
 
-    trierProduit(){
-      this.produits = this.produits.sort((n1,n2)=>{
-       
-        if(n1.idProduit > n2.idProduit){
-          return 1;
-        }
+    
 
-        if(n1.idProduit < n2.idProduit){
-          return -1 ;
-        }
+      updateProduit(prod:Produit): Observable<Produit>{
 
-        return 0 ;
+        return this.http.put<Produit>(this.apiUrl,prod,httpOption);
 
-      })
-    }
-
-      updateProduit(p:Produit){
-
-        this.supprimerProduit(p);
-        this.addProduit(p);
-        this.trierProduit();
+        
       }
 
       listeCategorie(): Categorie[]{

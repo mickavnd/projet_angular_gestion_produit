@@ -10,6 +10,7 @@ import { ProduitsComponent } from './produits/produits.component';
 import { AddProduitComponent } from './add-produit/add-produit.component';
 import { UpdateProduitComponent } from './update-produit/update-produit.component';
 import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RechercheParCategorieComponent } from './recherche-par-categorie/recher
     ProduitsComponent,
     AddProduitComponent,
     UpdateProduitComponent,
-    RechercheParCategorieComponent
+    RechercheParCategorieComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

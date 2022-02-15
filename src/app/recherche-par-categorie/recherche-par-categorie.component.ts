@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Categorie } from '../Model/categorie.Model';
 import { Produit } from '../Model/produit.Model';
 import { ProduitService } from '../services/produit.service';
@@ -16,14 +17,14 @@ export class RechercheParCategorieComponent implements OnInit {
   idCategorie :number;
 
 
-  constructor(private produitService:ProduitService) { 
+  constructor(private produitService:ProduitService, private route: Router) { 
     
   }
 
   ngOnInit(): void {
 
-    this.categorie =this.produitService.listeCategorie();
-    this.produit = this.produitService.listeProduit();
+   // this.categorie =this.produitService.listeCategorie();
+ //   this.produit = this.produitService.listeProduit();
   }
 
 onchange(){
@@ -38,7 +39,13 @@ onchange(){
     //console.log(p);
     let conf = confirm("Etes-vous sûr ?");
      if (conf)
-     this.produitService.supprimerProduit(p);
+     this.produitService.supprimerProduit(p.idProduit).subscribe(()=>{
+       console.log("produit suprimé");
+       
+     });
+     this.route.navigate(['produits']).then(()=>{
+       window.location.reload();
+     });
     
   }
 
