@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
    {path : "add-produit", component :AddProduitComponent},
    {path: "updateProduit/:id", component: UpdateProduitComponent},
    {path :"rechercheParCategorie", component: RechercheParCategorieComponent},
-   {path : "Login", component : LoginComponent },
+   {path : "login", component : LoginComponent },
    {path : "", redirectTo :"produits", pathMatch:"full"}
 
  ];
