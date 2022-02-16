@@ -11,6 +11,7 @@ import { AddProduitComponent } from './add-produit/add-produit.component';
 import { UpdateProduitComponent } from './update-produit/update-produit.component';
 import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
 import { LoginComponent } from './login/login.component';
+import { ForbidenComponent } from './forbiden/forbiden.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LoginComponent } from './login/login.component';
     AddProduitComponent,
     UpdateProduitComponent,
     RechercheParCategorieComponent,
-    LoginComponent
+    LoginComponent,
+    ForbidenComponent
   ],
   imports: [
     BrowserModule,

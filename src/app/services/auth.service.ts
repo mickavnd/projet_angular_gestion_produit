@@ -18,7 +18,7 @@ public loggedUser :string;
 public isloggedIn : boolean =false;
 public roles :string[];
 
-  constructor(private route :Router ) { }
+  constructor(private route :Router, private router: Router ) { }
 
 SignIn(User :User) :Boolean{
 
@@ -36,6 +36,38 @@ SignIn(User :User) :Boolean{
   })
  return validUser;
 }
+
+isAdmin(): Boolean{
+
+  if(!this.roles)
+    return false;
+  return(this.roles.indexOf('ADMIN') >-1);
+  ;
+}
+
+logout(){
+  this.isloggedIn=false;
+  this.loggedUser=undefined;
+  this.roles= undefined;
+
+  localStorage.removeItem('loggedUser');
+  localStorage.setItem('isloggedin',String(this.isloggedIn));
+  this.router.navigate(['/login'])
+}
+
+setLoggedUserFromLocalStorage(login : string) { 
+  this.loggedUser = login;
+   this.isloggedIn = true; 
+   this.getUserRoles(login);
+ }
+
+ getUserRoles(username :string){
+    this.users.forEach((curUser) => { 
+      if( curUser.username == username ) { 
+
+        this.roles = curUser.roles; } 
+      }); 
+      }
 
 
 

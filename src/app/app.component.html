@@ -23,7 +23,7 @@
           Produits
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/add-produit">Ajouté</a>
+              <li><a *ngIf="authService.isAdmin()" class="dropdown-item" routerLink="/add-produit">Ajouté</a>
                   
               </li>
             <li>
@@ -45,9 +45,9 @@
             </a>
           
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/login">login</a></li>
-              <li><a class="dropdown-item" href="#">logout</a></li>
-              <li><a class="dropdown-item" href="#">profile</a></li>
+              <li><a *ngIf="!authService.isloggedIn"class="dropdown-item" routerLink="/login">login</a></li>
+              <li><a *ngIf="authService.isloggedIn"  class="dropdown-item" (click)="onLogout()">logout</a></li>
+              <li><a  class="dropdown-item" href="#">profile</a></li>
 
             </ul>
           

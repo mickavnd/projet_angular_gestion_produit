@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Produit } from '../Model/produit.Model';
@@ -12,7 +13,7 @@ export class ProduitsComponent implements OnInit {
 
   produits: Produit[];
 
-  constructor(private produitService: ProduitService,private route : Router) {
+  constructor(private produitService: ProduitService,private route : Router, public authService :AuthService) {
 
     //this.produits = produitService.listeProduit();
 
